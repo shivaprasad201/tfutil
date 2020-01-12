@@ -25,14 +25,13 @@ jobs:
         fi
 
     - name: Build
-      run: env GOARCH=amd64 GOOS=darwin go build -o mac/tfutil -v
-
     - uses: actions/checkout@v1
     - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
       with:
           version: '270.0.0'
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
+      run: env GOARCH=amd64 GOOS=darwin go build -o mac/tfutil -v
     - run: ls -lhrt
 
     # - run: gsutil cp mac/tfutil gs://tfutil-bucket/mac/tfutil
