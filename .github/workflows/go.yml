@@ -28,10 +28,13 @@ jobs:
       run: go build -v .
 
     - name: Push
-      uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+    - uses: actions/checkout@v1
+    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
       with:
           version: '270.0.0'
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
+    
+    - name: run
       run: gcloud info
 
