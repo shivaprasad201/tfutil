@@ -30,6 +30,6 @@ jobs:
           version: '270.0.0'
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
-    - run: env GOARCH=amd64 GOOS=darwin go build -o mac/tfutil -v && ls -lhrt && gsutil cp mac/tfutil gs://tfutil-bucket/mac/tfutil
+    - run: env GOARCH=amd64 GOOS=darwin go build -o $GITHUB_SHA/mac/tfutil -v && ls -lhrt && gsutil cp $GITHUB_SHA/mac/tfutil gs://tfutil-bucket/$GITHUB_SHA/mac/tfutil
 
 
