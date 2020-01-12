@@ -25,8 +25,8 @@ func RenderTable(data [][]string) {
 		tablewriter.Colors{tablewriter.Bold, tablewriter.FgHiYellowColor},
 		tablewriter.Colors{tablewriter.Bold, tablewriter.FgHiGreenColor})
 
-	table.SetFooterColor(tablewriter.Colors{}, tablewriter.Colors{},
-		tablewriter.Colors{tablewriter.Bold})
+	// table.SetFooterColor(tablewriter.Colors{}, tablewriter.Colors{},
+	// 	tablewriter.Colors{tablewriter.Bold})
 
 	table.AppendBulk(data)
 	table.Render()
