@@ -7,7 +7,7 @@ func FindResource(m map[string]interface{}) [][]string {
 	for k, v := range m {
 		// fmt.Printf("Terraform object type is is %v\n", k)
 		switch k {
-		case "resource":
+		case "resource", "data":
 			v1 := v.([]interface{})
 			for _, v2 := range v1 {
 				v3 := v2.(map[string]interface{})
