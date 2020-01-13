@@ -13,7 +13,7 @@ var source string
 
 func init() {
 	rootCmd.AddCommand(cmdConfig)
-	cmdConfig.AddCommand(scmdView)
+	cmdConfig.AddCommand(scmdDescribe)
 	cmdConfig.PersistentFlags().StringVarP(&source, "source", "s", "", "Source of the terraform configurations to read from.")
 }
 
@@ -30,10 +30,30 @@ var cmdConfig = &cobra.Command{
 
 // Subcommands section
 
-var scmdView = &cobra.Command{
+var scmdDescribe = &cobra.Command{
 	Use:   "describe",
 	Short: "Describes the terraform configuration.",
-	Long:  `Use 'tfutil config describe' command to describe the terraform configuration from a .`,
+	Long:  `Use 'tfutil config describe' command to describe the terraform configuration from a source or a path.`,
+	Args:  cobra.MinimumNArgs(0),
+	Run: func(cmd *cobra.Command, args []string) {
+		h.RenderTable(h.FindResource(h.ReadSource(source)))
+	},
+}
+
+var scmdGenerate = &cobra.Command{
+	Use:   "generate",
+	Short: "Generates the terraform configuration.",
+	Long:  `Use 'tfutil config generate' command to generate the terraform configuration from a source module.`,
+	Args:  cobra.MinimumNArgs(0),
+	Run: func(cmd *cobra.Command, args []string) {
+		h.RenderTable(h.FindResource(h.ReadSource(source)))
+	},
+}
+
+var scmdInit = &cobra.Command{
+	Use:   "init",
+	Short: "Initialises a set of empty terraform files to put configurations in.",
+	Long:  `Use 'tfutil config init' command to create terrraform files.`,
 	Args:  cobra.MinimumNArgs(0),
 	Run: func(cmd *cobra.Command, args []string) {
 		h.RenderTable(h.FindResource(h.ReadSource(source)))
