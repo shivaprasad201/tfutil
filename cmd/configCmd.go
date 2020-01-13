@@ -13,7 +13,7 @@ var source string
 
 func init() {
 	rootCmd.AddCommand(cmdConfig)
-	cmdConfig.AddCommand(scmdDescribe)
+	cmdConfig.AddCommand(scmdDescribe, scmdGenerate, scmdInit)
 	cmdConfig.PersistentFlags().StringVarP(&source, "source", "s", "", "Source of the terraform configurations to read from.")
 }
 
