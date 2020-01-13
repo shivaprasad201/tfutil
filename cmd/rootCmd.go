@@ -11,6 +11,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "tfutil",
 	Short: "Tfutil",
+	Version: "v0.0.1",
 	Long:  `A simple utility to help working with Terraform.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Usage: \n  tfutil --help or tfutil -h for help")
