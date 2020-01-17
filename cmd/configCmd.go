@@ -38,15 +38,15 @@ var scmdDescribe = &cobra.Command{
 	Long:  `Use 'tfutil config describe' command to describe the terraform configuration from a source or a path.`,
 	Args:  cobra.MinimumNArgs(0),
 	Run: func(cmd *cobra.Command, args []string) {
-		d := FindResource(ReadSource(source))
+		d := h.FindResource(h.ReadSource(source))
 		switch blockKey {
 		case "all":
 			for k := range d {
-				MakeTable(GetTableData(c, k))
+				h.MakeTable(h.GetTableData(d, k))
 			}
 	
 		default:
-			MakeTable(GetTableData(c, k))
+			h.MakeTable(h.GetTableData(d, blockKey))
 		}
 	},
 }
@@ -57,7 +57,7 @@ var scmdGenerate = &cobra.Command{
 	Long:  `Use 'tfutil config generate' command to generate the terraform configuration from a source module.`,
 	Args:  cobra.MinimumNArgs(0),
 	Run: func(cmd *cobra.Command, args []string) {
-		h.RenderTable(h.FindResource(h.ReadSource(source)))
+		// h.RenderTable(h.FindResource(h.ReadSource(source)))
 	},
 }
 
@@ -67,6 +67,6 @@ var scmdInit = &cobra.Command{
 	Long:  `Use 'tfutil config init' command to create terrraform files.`,
 	Args:  cobra.MinimumNArgs(0),
 	Run: func(cmd *cobra.Command, args []string) {
-		h.RenderTable(h.FindResource(h.ReadSource(source)))
+		// h.RenderTable(h.FindResource(h.ReadSource(source)))
 	},
 }
