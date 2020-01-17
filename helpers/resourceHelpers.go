@@ -1,36 +1,34 @@
 package helpers
 
+import (
+	"fmt"
+)
+
 // FindResource finds all the resources and returns them in the tabulable data structure
-func FindResource(m map[string]interface{}) [][]string {
-	data := [][]string{}
+func FindResource(m map[string]interface{}) map[string][]string {
+	c := make(map[string][]string)
 
 	for k, v := range m {
-		// fmt.Printf("Terraform object type is is %v\n", k)
 		switch k {
 		case "resource", "data":
-			v1 := v.([]interface{})
-			for _, v2 := range v1 {
-				v3 := v2.(map[string]interface{})
-				for k4, v4 := range v3 {
-					v5 := v4.([]interface{})
-					for _, v6 := range v5 {
-						v7 := v6.(map[string]interface{})
-						for k5 := range v7 {
-							data = append(data, []string{k, k4, k5})
+			for _, v1 := range v.([]map[string]interface{}) {
+				for k2, v2 := range v1 {
+					for _, v3 := range v2.([]map[string]interface{}) {
+						for k4 := range v3 {
+							c[k] = append(c[k], fmt.Sprintf("%v:%v", k2, k4))
 						}
 					}
 				}
 			}
+
 		default:
-			v1 := v.([]interface{})
-			for _, v2 := range v1 {
-				v3 := v2.(map[string]interface{})
-				for k4 := range v3 {
-					data = append(data, []string{k, "N/A", k4})
+			for _, v1 := range v.([]map[string]interface{}) {
+				for k2 := range v1 {
+					c[k] = append(c[k], k2)
 				}
 			}
 		}
-	}
 
-	return data
+	}
+	return c
 }

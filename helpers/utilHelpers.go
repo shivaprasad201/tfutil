@@ -1,11 +1,11 @@
 package helpers
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"path/filepath"
+	"strings"
 
 	"github.com/hashicorp/hcl"
 )
@@ -19,7 +19,7 @@ func HandleError(e error, msg string) {
 
 // ReadSource reads the source path for terraform files
 func ReadSource(path string) map[string]interface{} {
-	var v interface{}
+	var v map[string]interface{}
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
 		HandleError(err, "Error: Unable to read the source path")
@@ -38,16 +38,20 @@ func ReadSource(path string) map[string]interface{} {
 
 		}
 	}
+	return v
+}
 
-	jsonData, err := json.MarshalIndent(v, "", " ")
-	if err != nil {
-		HandleError(err, "Error: Unable to marshal json.")
+func GetTableData(m map[string][]string, resKey string) [][]string {
+	var tableData [][]string
+
+	if _, ok := m[resKey]; ok {
+		for _, v := range m[resKey] {
+			l := strings.Split(v, ":")
+			tableData = append(tableData, append([]string{resKey}, l...))
+		}
+	} else {
+		fmt.Println("Error: requested resource type doesnt exist")
 	}
 
-	m := make(map[string]interface{})
-	err = json.Unmarshal(jsonData, &m)
-	if err != nil {
-		HandleError(err, "Error: cannot unmarshal json data.")
-	}
-	return m
+	return tableData
 }

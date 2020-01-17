@@ -10,11 +10,13 @@ import (
 
 // Flag variables
 var source string
+var blockKey string
 
 func init() {
 	rootCmd.AddCommand(cmdConfig)
 	cmdConfig.AddCommand(scmdDescribe, scmdGenerate, scmdInit)
 	cmdConfig.PersistentFlags().StringVarP(&source, "source", "s", "", "Source of the terraform configurations to read from.")
+	scmdDescribe.PersistentFlags().StringVarP(&blockKey, "block", "b", "", "Terraform configuration blocks to describe.")
 }
 
 var cmdConfig = &cobra.Command{
@@ -36,7 +38,16 @@ var scmdDescribe = &cobra.Command{
 	Long:  `Use 'tfutil config describe' command to describe the terraform configuration from a source or a path.`,
 	Args:  cobra.MinimumNArgs(0),
 	Run: func(cmd *cobra.Command, args []string) {
-		h.RenderTable(h.FindResource(h.ReadSource(source)))
+		d := FindResource(ReadSource(source))
+		switch blockKey {
+		case "all":
+			for k := range d {
+				MakeTable(GetTableData(c, k))
+			}
+	
+		default:
+			MakeTable(GetTableData(c, k))
+		}
 	},
 }
 
