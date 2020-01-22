@@ -41,6 +41,7 @@ func ReadSource(path string) map[string]interface{} {
 	return v
 }
 
+// GetTableData obtains the required data form the data structure to populate the table.
 func GetTableData(m map[string][]string, resKey string) [][]string {
 	var tableData [][]string
 
@@ -54,4 +55,9 @@ func GetTableData(m map[string][]string, resKey string) [][]string {
 	}
 
 	return tableData
+}
+
+// InitFiles initalises the set of empty terraform configuration files in a provided directory
+func InitFiles(path string ) {
+	
 }
