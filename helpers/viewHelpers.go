@@ -1,9 +1,9 @@
 package helpers
 
 import (
-	"os"
 	"fmt"
 	"github.com/olekukonko/tablewriter"
+	"os"
 )
 
 // MakeTable renders the data into a table
@@ -11,7 +11,10 @@ func MakeTable(td [][]string) {
 
 	table := tablewriter.NewWriter(os.Stdout)
 
-	if len(td[0]) == 2 {
+	if len(td) == 0 {
+		HandleError(nil, "No resource data found")
+
+	} else if len(td[0]) == 2 {
 
 		table.SetHeader([]string{"TF Block Type", "Name"})
 		table.SetFooter([]string{"", ""})

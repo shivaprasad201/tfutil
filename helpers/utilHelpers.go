@@ -6,6 +6,7 @@ import (
 	"log"
 	"path/filepath"
 	"strings"
+	"os"
 
 	"github.com/hashicorp/hcl"
 )
@@ -14,6 +15,7 @@ import (
 func HandleError(e error, msg string) {
 	if e != nil {
 		log.Fatal(e, msg)
+		os.Exit(1)
 	}
 }
 
@@ -51,9 +53,8 @@ func GetTableData(m map[string][]string, resKey string) [][]string {
 			tableData = append(tableData, append([]string{resKey}, l...))
 		}
 	} else {
-		fmt.Println("Error: requested resource type doesnt exist")
+		HandleError(nil, "Error: requested resource type doesnt exist")
 	}
-
 	return tableData
 }
 
