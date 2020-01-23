@@ -11,12 +11,14 @@ import (
 // Flag variables
 var source string
 var blockKey string
+var initPath string
 
 func init() {
 	rootCmd.AddCommand(cmdConfig)
 	cmdConfig.AddCommand(scmdDescribe, scmdGenerate, scmdInit)
 	cmdConfig.PersistentFlags().StringVarP(&source, "source", "s", "", "Source of the terraform configurations to read from.")
 	scmdDescribe.PersistentFlags().StringVarP(&blockKey, "block", "b", "", "Terraform configuration blocks to describe.")
+	scmdInit.PersistentFlags().StringVarP(&initPath, "path", "p", "", "Path to initialise terraform file in.")
 }
 
 var cmdConfig = &cobra.Command{
@@ -67,6 +69,6 @@ var scmdInit = &cobra.Command{
 	Long:  `Use 'tfutil config init' command to create terrraform files.`,
 	Args:  cobra.MinimumNArgs(0),
 	Run: func(cmd *cobra.Command, args []string) {
-		// h.RenderTable(h.FindResource(h.ReadSource(source)))
+		h.InitFiles(initPath)
 	},
 }
