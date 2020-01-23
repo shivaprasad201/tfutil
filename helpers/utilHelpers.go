@@ -57,7 +57,3 @@ func GetTableData(m map[string][]string, resKey string) [][]string {
 	return tableData
 }
 
-// InitFiles initalises the set of empty terraform configuration files in a provided directory
-func InitFiles(path string ) {
-	
-}

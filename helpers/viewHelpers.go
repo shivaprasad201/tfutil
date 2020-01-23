@@ -6,7 +6,7 @@ import (
 	"github.com/olekukonko/tablewriter"
 )
 
-// RenderTable renders the data into a table
+// MakeTable renders the data into a table
 func MakeTable(td [][]string) {
 
 	table := tablewriter.NewWriter(os.Stdout)
