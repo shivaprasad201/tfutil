@@ -1,0 +1,188 @@
+map
+    [
+        locals:
+            [
+                env
+                team_name 
+                purpose
+            ] 
+        output:
+            [
+                project_name
+                project_id 
+                project_vault_token
+            ] 
+        provider:
+            [
+                vault
+            ]
+        resource:
+            [
+                google_project
+                kobalt_project
+                google_project_services
+                kobalt_project_apis
+                google_service_account
+                kobalt_project_vault_service_account
+                google_project_iam_member 
+                kobalt_project_vault_member 
+                google_service_account_key 
+                kobalt_project_vault_service_account_key 
+                vault_gcp_secret_backend 
+                kobalt_project_gcp_secret_backend 
+                vault_gcp_secret_roleset 
+                kobalt_project_roleset 
+                vault_policy 
+                kobalt_project_policy 
+                vault_token 
+                kobalt_project_token 
+                vault_token 
+                kobalt_project_token1 
+                google_storage_bucket 
+                kobalt_project_tfstate_bucket
+            ] 
+        variable:
+            [
+                environment 
+                team_name 
+                purpose 
+                parent_folder_id 
+                billing_account 
+                apis_list 
+                create_default_network 
+                vault_iam_roles
+            ]
+    ]
+
+
+map
+    [
+        locals:
+            [
+                env 
+                team_name
+                purpose
+            ] 
+        output:
+            [
+                project_name 
+                project_id 
+                project_vault_token
+            ] 
+        provider:
+            [
+                vault
+            ] 
+        resource:
+            [
+                google_project 
+                kobalt_project 
+                google_project_services 
+                kobalt_project_apis 
+                google_service_account 
+                kobalt_project_vault_service_account 
+                google_project_iam_member 
+                kobalt_project_vault_member 
+                google_service_account_key 
+                kobalt_project_vault_service_account_key 
+                vault_gcp_secret_backend 
+                kobalt_project_gcp_secret_backend 
+                vault_gcp_secret_roleset 
+                kobalt_project_roleset 
+                vault_policy 
+                kobalt_project_policy 
+                vault_token 
+                kobalt_project_token 
+                vault_token 
+                kobalt_project_token1 
+                google_storage_bucket 
+                kobalt_project_tfstate_bucket
+            ] 
+        variable:
+            [
+                environment 
+                team_name 
+                purpose 
+                parent_folder_id 
+                billing_account 
+                apis_list 
+                create_default_network 
+                vault_iam_roles
+            ]
+    ]
+
+
+
+
+map
+    [
+        locals:
+            [
+                purpose env team_name
+            ] 
+        output:
+            [
+                project_name project_id 
+                project_vault_token
+            ] 
+        provider:
+            [
+                vault
+            ] 
+        resource:
+            [
+                google_project:kobalt_project 
+                google_project_services:kobalt_project_apis 
+                google_service_account:kobalt_project_vault_service_account 
+                google_project_iam_member:kobalt_project_vault_member 
+                google_service_account_key:kobalt_project_vault_service_account_key 
+                vault_gcp_secret_backend:kobalt_project_gcp_secret_backend 
+                vault_gcp_secret_roleset:kobalt_project_roleset 
+                vault_policy:kobalt_project_policy 
+                vault_token:kobalt_project_token 
+                vault_token:kobalt_project_token1 
+                google_storage_bucket:kobalt_project_tfstate_bucket
+            ] 
+        variable:
+            [
+                environment 
+                team_name 
+                purpose 
+                parent_folder_id 
+                billing_account 
+                apis_list 
+                create_default_network vault_iam_roles
+            ]
+        ]
+
+
+
+
+
+[
+    [resource google_project kobalt_project] 
+    [resource google_project kobalt_project] 
+    [resource google_project_services kobalt_project_apis] 
+    [resource google_project_services kobalt_project_apis] 
+    [resource google_service_account kobalt_project_vault_service_account] 
+    [resource google_service_account kobalt_project_vault_service_account] 
+    [resource google_project_iam_member kobalt_project_vault_member] 
+    [resource google_project_iam_member kobalt_project_vault_member] 
+    [resource google_service_account_key kobalt_project_vault_service_account_key] 
+    [resource google_service_account_key kobalt_project_vault_service_account_key] 
+    [resource vault_gcp_secret_backend kobalt_project_gcp_secret_backend] 
+    [resource vault_gcp_secret_backend kobalt_project_gcp_secret_backend] 
+    [resource vault_gcp_secret_roleset kobalt_project_roleset] 
+    [resource vault_gcp_secret_roleset kobalt_project_roleset] 
+    [resource vault_policy kobalt_project_policy] 
+    [resource vault_policy kobalt_project_policy] 
+    [resource vault_token kobalt_project_token] 
+    [resource vault_token kobalt_project_token] 
+    [resource vault_token kobalt_project_token1] 
+    [resource vault_token kobalt_project_token1] 
+    [resource google_storage_bucket kobalt_project_tfstate_bucket] 
+    [resource google_storage_bucket kobalt_project_tfstate_bucket]]
+
+
+
+ 
